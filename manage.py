@@ -160,7 +160,7 @@ elif st.session_state.page == "處方箋管理":
     # ====================== 歷史處方箋顯示 ======================
     if history:
         st.divider()
-        st.subheader("歷史處方箋紀錄（點開可載入舊版）")
+        st.subheader("歷史處方箋紀錄")
         # 由新到舊排序
         for idx, p in enumerate(reversed(history)):
             actual_idx = len(history) - 1 - idx
@@ -186,4 +186,5 @@ elif st.session_state.page == "處方箋管理":
                     st.session_state[f"load_old_{patient_id}"] = p
 
                     st.rerun()
+
 
