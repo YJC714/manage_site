@@ -132,15 +132,15 @@ elif st.session_state.page == "處方箋管理":
         with col2:
             case_manager = st.text_input("個管師姓名", value=case_manager)
 
-        st.markdown("### 處方內容（每行一條建議）")
-        contents = st.text_area("請輸入運動建議（換行分隔）", value=contents, height=200)
+        st.markdown("### 處方內容")
+        contents = st.text_area("請輸入運動建議", value=contents, height=200)
 
-        notes = st.text_area("備註或提醒訊息（選填）", value=notes, height=100)
+        notes = st.text_area("備註或提醒訊息", value=notes, height=100)
 
         status = st.selectbox("處方狀態", ["進行中", "已完成", "已暫停"],
                               index=["進行中", "已完成", "已暫停"].index(status))
 
-        submitted = st.form_submit_button("儲存處方箋（新增一筆歷史）", type="primary", use_container_width=True)
+        submitted = st.form_submit_button("儲存處方箋", type="primary", use_container_width=True)
 
         if submitted:
             new_prescription = {
@@ -182,6 +182,7 @@ elif st.session_state.page == "處方箋管理":
                 if p.get("備註"):
                     st.caption(f"備註：{p['備註']}")
 
-                if st.button("載入此版本進行編輯", key=f"load_{patient_id}_{actual_idx}"):
+                if st.button("進行編輯", key=f"load_{patient_id}_{actual_idx}"):
                     st.session_state[f"load_old_{patient_id}"] = p
+
                     st.rerun()
