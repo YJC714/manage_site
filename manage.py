@@ -16,11 +16,11 @@ st.set_page_config(
 # ====================== 模擬資料 ======================
 if "patients" not in st.session_state:
     st.session_state.patients = {
-        "001": {"name": "陳小美", "gender": "女", "age": 72, "phone": "0912-345-678"},
-        "002": {"name": "溫實初", "gender": "男", "age": 78, "phone": "0933-456-789"},
-        "003": {"name": "安陵容", "gender": "女", "age": 81, "phone": "0921-567-890"},
-        "004": {"name": "余鶯兒", "gender": "女", "age": 75, "phone": "0987-654-321"},
-        "005": {"name": "蘇培盛", "gender": "男", "age": 69, "phone": "0918-123-456"},
+        "001": {"name": "陳小美", "gender": "女", "age": 72},
+        "002": {"name": "溫實初", "gender": "男", "age": 78},
+        "003": {"name": "安陵容", "gender": "女", "age": 81},
+        "004": {"name": "余鶯兒", "gender": "女", "age": 75},
+        "005": {"name": "蘇培盛", "gender": "男", "age": 69},
     }
 
 # 處方箋檔案
@@ -56,14 +56,14 @@ if st.session_state.page == "病人列表":
     st.header("病人列表")
     df = pd.DataFrame.from_dict(st.session_state.patients, orient="index")
     df = df.reset_index().rename(columns={"index": "病歷號"})
-    df = df[["病歷號", "name", "gender", "age", "phone"]]
+    df = df[["病歷號", "name", "gender", "age"]]
 
     for idx, row in df.iterrows():
         with st.container(border=True):
             col1, col2, col3 = st.columns([3, 2, 2])
             with col1:
                 st.write(f"**{row['name']}** ({row['gender']}, {row['age']}歲)")
-                st.write(f"病歷號：{row['病歷號']}　｜　電話：{row['phone']}")
+                st.write(f"病歷號：{row['病歷號']}　")
             with col2:
                 pid = row['病歷號']
                 if pid in st.session_state.prescriptions:
@@ -186,3 +186,4 @@ elif st.session_state.page == "處方箋管理":
                     st.session_state[f"load_old_{patient_id}"] = p
 
                     st.rerun()
+
