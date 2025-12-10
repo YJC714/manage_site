@@ -88,7 +88,12 @@ if st.session_state.page == "病人列表":
 
 elif st.session_state.page == "處方箋管理":
     st.header("運動處方箋開立／編輯")
-    st.write("臨床衰弱量表：第5級輕微衰弱")
+    choice = st.radio(
+    "臨床衰弱量表：",
+    ["第1級非常健康", "第2級很好",, "第3級還可以", "第4級脆弱", "第5級輕度衰弱","第6級中度衰弱"]
+)
+
+    
 
     patient_options = {v["name"]: k for k, v in st.session_state.patients.items()}
     default_name = st.session_state.patients[st.session_state.selected_patient]["name"] if "selected_patient" in st.session_state else None
@@ -224,6 +229,7 @@ elif st.session_state.page == "運動回報核可":
             with col4:
                 if st.button("核可", key=f"approve_{i}", use_container_width=True):
                     st.success(f"已核可：{log['time']} 的回報")
+
 
 
 
