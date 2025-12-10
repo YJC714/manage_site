@@ -213,17 +213,18 @@ elif st.session_state.page == "運動回報核可":
             col1, col2, col3, col4 = st.columns([2, 2, 3, 1])
     
             with col1:
-                st.write(f"**患者：**{patient_name}")
+                st.write(f"患者：{patient_name}")
     
             with col2:
-                st.write(f"**時間：**{log['time']}")
+                st.write(f"時間：{log['time']}")
     
             with col3:
-                st.write(f"**運動內容：**{log['content']}")
+                st.write(f"運動內容：{log['content']}")
     
             with col4:
                 if st.button("核可", key=f"approve_{i}", use_container_width=True):
                     st.success(f"已核可：{log['time']} 的回報")
+
 
 
 
