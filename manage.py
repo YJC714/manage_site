@@ -200,11 +200,11 @@ elif st.session_state.page == "運動回報核可":
     patient_name = "王聖德"
 
     exercise_logs = [
-        {"time": "2025-12-6 16:00", "content": "社區運動中心運動35分鐘"},
-        {"time": "2025-12-7 09:30", "content": "散步20分鐘"},
-        {"time": "2025-12-8 14:10", "content": "散步25分鐘"},
-        {"time": "2025-12-9 16:00", "content": "社區運動中心運動30分鐘"},
-        {"time": "2025-12-10 17:20", "content": "社區運動中心運動30分鐘"},
+        {"time": "2025-12-9 16:00", "content": "社區運動中心運動35分鐘"},
+        {"time": "2025-12-11 09:30", "content": "散步20分鐘"},
+        {"time": "2025-12-15 14:10", "content": "散步25分鐘"},
+        {"time": "2025-12-24 16:00", "content": "社區運動中心運動30分鐘"},
+        {"time": "2025-12-30 17:20", "content": "社區運動中心運動30分鐘"},
     ]
     
     # === 顯示每一筆回報 ===
@@ -224,6 +224,7 @@ elif st.session_state.page == "運動回報核可":
             with col4:
                 if st.button("核可", key=f"approve_{i}", use_container_width=True):
                     st.success(f"已核可：{log['time']} 的回報")
+
 
 
 
