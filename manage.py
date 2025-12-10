@@ -88,7 +88,7 @@ if st.session_state.page == "病人列表":
 
 elif st.session_state.page == "處方箋管理":
     st.header("運動處方箋開立／編輯")
-    st.write("狀態：第5級輕微衰弱")
+    st.write("臨床衰弱量表：第5級輕微衰弱")
 
     patient_options = {v["name"]: k for k, v in st.session_state.patients.items()}
     default_name = st.session_state.patients[st.session_state.selected_patient]["name"] if "selected_patient" in st.session_state else None
@@ -193,6 +193,7 @@ elif st.session_state.page == "處方箋管理":
                     st.session_state[f"load_old_{patient_id}"] = p
 
                     st.rerun()
+
 
 
 
