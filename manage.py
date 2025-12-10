@@ -16,7 +16,7 @@ st.set_page_config(
 # ====================== 模擬資料 ======================
 if "patients" not in st.session_state:
     st.session_state.patients = {
-        "001": {"name": "陳小美", "gender": "女", "age": 72},
+        "001": {"name": "王聖德", "gender": "男", "age": 63},
         "002": {"name": "溫實初", "gender": "男", "age": 78},
         "003": {"name": "安陵容", "gender": "女", "age": 81},
         "004": {"name": "余鶯兒", "gender": "女", "age": 75},
@@ -33,19 +33,24 @@ else:
 # ====================== 左側選單 ======================
 with st.sidebar:
     st.title("個管師後台")
-    st.write(f"歡迎，**王小明 個管師**")
+    st.write(f"歡迎，**高曼玉 個管師**")
     st.divider()
 
     btn1 = st.button("病人列表", use_container_width=True,
                      type="primary" if st.session_state.get("page", "病人列表") == "病人列表" else "secondary")
     btn2 = st.button("開立／編輯處方箋", use_container_width=True,
                      type="primary" if st.session_state.get("page", "病人列表") == "處方箋管理" else "secondary")
+    btn3 = st.button("運動回報核可", use_container_width=True,
+                     type="primary" if st.session_state.get("page") == "運動回報核可" else "secondary")
 
     if btn1:
         st.session_state.page = "病人列表"
         st.rerun()
     if btn2:
         st.session_state.page = "處方箋管理"
+        st.rerun()
+    if btn3:
+        st.session_state.page = "運動回報核可"
         st.rerun()
 
 if "page" not in st.session_state:
@@ -64,6 +69,7 @@ if st.session_state.page == "病人列表":
             with col1:
                 st.write(f"**{row['name']}** ({row['gender']}, {row['age']}歲)")
                 st.write(f"病歷號：{row['病歷號']}　")
+                
             with col2:
                 pid = row['病歷號']
                 if pid in st.session_state.prescriptions:
@@ -82,6 +88,7 @@ if st.session_state.page == "病人列表":
 
 elif st.session_state.page == "處方箋管理":
     st.header("運動處方箋開立／編輯")
+    st.write("狀態：第5級輕微衰弱")
 
     patient_options = {v["name"]: k for k, v in st.session_state.patients.items()}
     default_name = st.session_state.patients[st.session_state.selected_patient]["name"] if "selected_patient" in st.session_state else None
@@ -102,7 +109,7 @@ elif st.session_state.page == "處方箋管理":
     history = st.session_state.prescriptions[patient_id]
     latest = history[-1] if history else {
         "開立日期": datetime.date.today().strftime("%Y-%m-%d"),
-        "個管師": "王小明 個管師",
+        "個管師": "高曼玉 個管師",
         "處方內容": [],
         "備註": "",
         "status": "進行中"
@@ -186,5 +193,6 @@ elif st.session_state.page == "處方箋管理":
                     st.session_state[f"load_old_{patient_id}"] = p
 
                     st.rerun()
+
 
 
