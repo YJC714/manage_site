@@ -90,7 +90,7 @@ elif st.session_state.page == "處方箋管理":
     st.header("運動處方箋開立／編輯")
     choice = st.radio(
     "臨床衰弱量表：",
-    ["第1級非常健康", "第2級很好",, "第3級還可以", "第4級脆弱", "第5級輕度衰弱","第6級中度衰弱"]
+    ["第1級非常健康", "第2級很好", "第3級還可以", "第4級脆弱", "第5級輕度衰弱","第6級中度衰弱"]
 )
 
     
@@ -229,6 +229,7 @@ elif st.session_state.page == "運動回報核可":
             with col4:
                 if st.button("核可", key=f"approve_{i}", use_container_width=True):
                     st.success(f"已核可：{log['time']} 的回報")
+
 
 
 
