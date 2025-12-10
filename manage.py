@@ -193,7 +193,7 @@ elif st.session_state.page == "處方箋管理":
                     st.session_state[f"load_old_{patient_id}"] = p
 
                     st.rerun()
-elif st.session_state.page == "運動核可":
+elif st.session_state.page == "運動回報核可":
     st.header("長者運動回報核可")
     
     
@@ -222,6 +222,7 @@ elif st.session_state.page == "運動核可":
             with col4:
                 if st.button("核可", key=f"approve_{i}", use_container_width=True):
                     st.success(f"已核可：{log['time']} 的回報")
+
 
 
 
