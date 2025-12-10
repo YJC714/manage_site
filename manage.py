@@ -193,6 +193,36 @@ elif st.session_state.page == "處方箋管理":
                     st.session_state[f"load_old_{patient_id}"] = p
 
                     st.rerun()
+elif st.session_state.page == "運動核可":
+    st.header("長者運動回報核可")
+    
+    
+    patient_name = "王聖德"
+
+    exercise_logs = [
+        {"time": "2025-12-10 09:30", "content": "快走 20 分鐘"},
+        {"time": "2025-12-10 14:10", "content": "彈力帶手臂訓練 10 分鐘"},
+        {"time": "2025-12-10 19:00", "content": "深蹲 15 下 × 3 組"}
+    ]
+    
+    # === 顯示每一筆回報 ===
+    for i, log in enumerate(exercise_logs):
+        with st.container(border=True):
+            col1, col2, col3, col4 = st.columns([2, 2, 3, 1])
+    
+            with col1:
+                st.write(f"**患者：**{patient_name}")
+    
+            with col2:
+                st.write(f"**時間：**{log['time']}")
+    
+            with col3:
+                st.write(f"**運動內容：**{log['content']}")
+    
+            with col4:
+                if st.button("核可", key=f"approve_{i}", use_container_width=True):
+                    st.success(f"已核可：{log['time']} 的回報")
+
 
 
 
